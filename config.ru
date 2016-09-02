@@ -1,3 +1,2 @@
-require './review-aggregator'
-
+require './review_aggregator'
 run Sinatra::Application
