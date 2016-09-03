@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Super Epic Review Aggregator</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheets/review_aggregator.css">
+</head>
+<body>
+  <header></header>
+  <main>
+    <section id="search-section">
+      <form action="/search" method="post">
+        <input name="term" id="search-bar" type="search" placeholder="Business name">
+        <input name="location" id="location-bar" type="search" placeholder="City or zip">
+        <input type="submit" value="search">
+      </form>
+    </section>
+    <section id="result">
+      <% if @result %>
+        <div><%= @result[0].phone %></div>
+      <% end %>
+    </section>
+  </main>
+  <footer></footer>
+</body>
+</html>
