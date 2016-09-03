@@ -33,13 +33,13 @@ post "/search" do
   redirect back if term == "" || location == ""
 
   response_data = settings.client.search(location, { term: term })
-  @result = response_data.businesses
+  @results = response_data.businesses
 
   erb :index
 end
 
 # TODO render html of one review page of business clicked on in list of businesses
-get "/:biz_id" do
+get "/view/:biz_id" do
   @biz_id = params[:biz_id]
 
 # @response is a some sort of internal Rails / Sinatra variable and things get hairy when you try to use it as a regular name for a variable. DON'T DO THAT!

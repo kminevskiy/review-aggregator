@@ -9,6 +9,7 @@
 <body>
   <header></header>
   <main>
+
     <section id="search-section">
       <form action="/search" method="post">
         <input name="term" id="search-bar" type="search" placeholder="Business name">
@@ -16,11 +17,24 @@
         <input type="submit" value="search">
       </form>
     </section>
-    <section id="result">
-      <% if @result %>
-        <div><%= @result[0].phone %></div>
+
+    <section id="results">
+      <% if @results %>
+        <div>
+          <ul>
+          <% @results.each do |business| %>
+            <li class='biz-list'>
+              <a href='/view/<%= business.id %>'><%= business.name %></a><br>
+              <strong>Rating:</strong> <%= business.rating %> (<%= business.review_count %>), 
+              <strong>Address:</strong> <%= business.location.display_address.join('') %>, 
+              <strong>Phone:</strong> <%= business.display_phone %>
+            </li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
     </section>
+
   </main>
   <footer></footer>
 </body>
