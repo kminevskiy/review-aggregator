@@ -16,12 +16,9 @@ configure do
                             })
 end
 
-helpers do
-end
+helpers do; end
 
-before do
-  @result = nil
-end
+before do; end
 
 # render the main search page
 get '/' do
@@ -38,13 +35,12 @@ post "/search" do
   response_data = settings.client.search(location, { term: term })
   @result = response_data.businesses
 
-  redirect "/"
+  erb :index
 end
 
 # TODO render html of one review page of business clicked on in list of businesses
-get "/:biz_id/:location" do
+get "/:biz_id" do
   @biz_id = params[:biz_id]
-  @location = params[:location]
 
 # @response is a some sort of internal Rails / Sinatra variable and things get hairy when you try to use it as a regular name for a variable. DON'T DO THAT!
   @something_else_but_not_response = client.business(@biz_id)
