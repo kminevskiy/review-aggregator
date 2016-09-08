@@ -21,8 +21,12 @@ helpers do; end
 before do; end
 
 # render the main search page
-get '/' do
+get "/" do
   erb :index
+end
+
+get "/search" do
+  redirect "/"
 end
 
 # perform API call & return results of search
@@ -41,9 +45,8 @@ end
 # TODO render html of one review page of business clicked on in list of businesses
 get "/view/:biz_id" do
   @biz_id = params[:biz_id]
-
-# @response is a some sort of internal Rails / Sinatra variable and things get hairy when you try to use it as a regular name for a variable. DON'T DO THAT!
-  @something_else_but_not_response = client.business(@biz_id)
+  @response = settings.client.business(@biz_id)
+  @yelp_biz = @response.business
 
   erb :reviews
 end
