@@ -9,11 +9,9 @@ html {
 body {
   min-height: 100%;
   position: relative;
-  background-color: lightgray;
 }
 
 #search-section {
-  text-align: center;
   max-width: 400px;
   margin: 20px auto;
   position: absolute;
@@ -47,9 +45,10 @@ form input[type=search]::-webkit-search-cancel-button{
   right: 30px;
 }
 
-form input[type=submit] {
+form input[type=submit],
+form input[type=button] {
   width: 100px;
-  display: block;
+  display: inline-block;
   -webkit-appearance: none;
   padding: 10px 20px;
   background-color: #707070;
@@ -64,8 +63,69 @@ form input[type=submit] {
   transition: background-color 400ms, color 400ms, linear;
 }
 
-form input[type=submit]:hover {
+form input[type=button] {
+  float: right;
+}
+
+form input[type=submit]:hover,
+form input[type=button]:hover {
   background-color: #4C4C4C;
+}
+
+/*
+====================
+Results styling
+====================
+*/
+
+#results {
+  text-align: center;
+  max-width: 400px;
+  margin: 20px auto;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#results ul {
+  border-radius: 4px;
+  background-color: #EAEBEA;
+  margin-bottom: 10px;
+  opacity: .5;
+  padding: 5px 15px 15px 15px;
+  border-bottom: 1px solid #000;
+  -webkit-transition: opacity 500ms ease-in-out;
+  transition: opacity 500ms ease-in-out;
+}
+
+#results ul:hover {
+  opacity: 1;
+}
+
+#results li {
+  font-size: 14px;
+  cursor: default;
+}
+
+#results img {
+  vertical-align: middle;
+}
+
+#results li a {
+  color: #000;
+  text-decoration: none;
+  font-size: 16px;
+  display: inline-block;
+  margin: 10px 0;
+}
+
+#results li:not(:first-child) {
+  text-align: left;
+}
+
+li span {
+  font-weight: bold;
 }
 
 @media only screen

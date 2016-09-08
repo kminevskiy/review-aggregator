@@ -5,6 +5,8 @@
   <title>Super Epic Review Aggregator</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   <link rel="stylesheet" href="stylesheets/review_aggregator.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="javascripts/review_aggregator.js"></script>
 </head>
 <body>
   <header></header>
@@ -15,23 +17,20 @@
         <input name="term" id="search-bar" type="search" placeholder="Business name">
         <input name="location" id="location-bar" type="search" placeholder="City or zip">
         <input type="submit" value="search">
+        <input type="button" value="clear">
       </form>
     </section>
 
     <section id="results">
       <% if @results %>
-        <div>
-          <ul>
           <% @results.each do |business| %>
-            <li class='biz-list'>
-              <a href='/view/<%= business.id %>'><%= business.name %></a><br>
-              <strong>Rating:</strong> <%= business.rating %> (<%= business.review_count %>), 
-              <strong>Address:</strong> <%= business.location.display_address.join('') %>, 
-              <strong>Phone:</strong> <%= business.display_phone %>
-            </li>
+            <ul>
+              <li><a href='/view/<%= business.id %>'><%= business.name %></a></li>
+              <li><span>Rating:</span> <%= business.rating %> (<%= business.review_count %>) <img src=<%= business.rating_img_url %>></img></li>
+              <li><span>Address:</span> <%= business.location.display_address.join(', ') %></li>
+              <li><span>Phone:</span> <%= business.display_phone %></li>
+            </ul>
           <% end %>
-          </ul>
-        </div>
       <% end %>
     </section>
 
