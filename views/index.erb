@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="stylesheets/review_aggregator.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="javascripts/review_aggregator.js"></script>
+  <script src="javascripts/test_ajax.js"></script>
 </head>
 <body>
   <header></header>
@@ -25,7 +26,7 @@
       <% if @results %>
           <% @results.each do |business| %>
             <ul>
-              <li><a href='/view/<%= business.id %>'><%= business.name %></a></li>
+              <li class="result-name"><a href='/view/<%= business.id %>'><%= business.name %></a></li>
               <li><span>Rating:</span> <%= business.rating %> (<%= business.review_count %>) <img src=<%= business.rating_img_url %>></img></li>
               <li><span>Address:</span> <%= business.location.display_address.join(', ') %></li>
               <li><span>Phone:</span> <%= business.display_phone %></li>
@@ -35,6 +36,11 @@
     </section>
 
   </main>
+  
+  <section id="aggregate-model">
+    <!-- aggregate reviews window popup -->
+  </section>
+
   <footer></footer>
 </body>
 </html>

@@ -21,11 +21,14 @@
           <img src="" id="yelp-logo-button" > <!-- yelp logo -->
           <img src="<%= @yelp_biz.rating_img_url %>" >
           <%= @yelp_biz.rating %> (<%= @yelp_biz.review_count %> Reviews)
-          <a href="">See Reviews on Yelp! ></a>
+          <a href="" target="_blank">See Reviews on Yelp! ></a>
         </li>
 
         <li id="google-rating">
           <img src="" id="google-logo-button" > <!-- google logo-->
+          <img src="" >
+          <%= calc_google_rating(@google_biz) %> (<%= @google_biz.reviews.size %> Reviews)
+          <a href="<%= @google_biz.url %>" target="_blank">See Reviews on Google ></a>
         </li>
 
         <li id="fb-rating">
