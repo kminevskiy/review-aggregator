@@ -5,6 +5,8 @@
   <title>Super Epic Review Aggregator</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   <link rel="stylesheet" href="stylesheets/review_aggregator.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.runtime.js"></script>
+  <script src="javascripts/templates/modal.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="javascripts/review_aggregator.js"></script>
 </head>
@@ -25,13 +27,16 @@
       <% if @results %>
           <% @results.each do |business| %>
             <ul>
-              <li><a href='/view/<%= business.id %>'><%= business.name %></a></li>
+              <li><a id=<%= business.id %> href='/view/<%= business.id %>'><%= business.name %></a></li>
               <li><span>Rating:</span> <%= business.rating %> (<%= business.review_count %>) <img src=<%= business.rating_img_url %>></img></li>
               <li><span>Address:</span> <%= business.location.display_address.join(', ') %></li>
               <li><span>Phone:</span> <%= business.display_phone %></li>
             </ul>
           <% end %>
       <% end %>
+    </section>
+    <section id="modal">
+      <div id="close-modal">&#x2573</div>
     </section>
 
   </main>

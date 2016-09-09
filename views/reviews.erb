@@ -1,22 +1,25 @@
-<!-- Use this ERB template to render the detailed results from clicking on one listing -->
-<div id="aggreaget-wrapper">
-
-  <section id="aggregate-info">
-    <span><%= @yelp_biz.name %></span>
-
-    <section id="aggregate-rating">
-      <img src="<%= @yelp_biz.rating_img_url %>" >
-      <%= @yelp_biz.rating %> (<%= @yelp_biz.review_count %> Reviews)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <!-- Use this ERB template to render the detailed results from clicking on one listing -->
+  <div id="aggregate-wrapper">
+    <section id="aggregate-info">
+      <span><%= @yelp_biz.name %></span>
+      <section id="aggregate-rating">
+        <img src="<%= @yelp_biz.rating_img_url %>" >
+        <%= @yelp_biz.rating %> (<%= @yelp_biz.review_count %> Reviews)
+      </section>
+      <section id="address-phone">
+        <span id="aggregate-address"><%= @yelp_biz.location.display_address.join(", ") %></span>
+        <span id="aggregate-phone"><%= @yelp_biz.display_phone %></span>
+      </section>
     </section>
-    
-    <section id="address-phone">
-      <span id="aggregate-address"><%= @yelp_biz.location.display_address.join(", ") %></span>
-      <span id="aggregate-phone"><%= @yelp_biz.display_phone %></span>
-    </section>
-  </section>
-  
-  <section id="aggregate-sites">
-    <ul>
+    <section id="aggregate-sites">
+      <ul>
         <li id="yelp-rating">
           <img src="" id="yelp-logo-button" > <!-- yelp logo -->
           <img src="<%= @yelp_biz.rating_img_url %>" >
@@ -31,8 +34,8 @@
         <li id="fb-rating">
           <img src="" id="fb-logo-button" > <!-- facebook logo -->
         </li>
-    </ul>
-  </section>
-
-</div>
-
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

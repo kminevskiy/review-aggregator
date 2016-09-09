@@ -4,6 +4,7 @@ require "tilt/erubis"
 require "sinatra/content_for"
 require "yelp"
 require "yaml"
+require 'json'
 
 configure do
   set :erb, :escape_html => true
@@ -43,10 +44,13 @@ post "/search" do
 end
 
 # TODO render html of one review page of business clicked on in list of businesses
-get "/view/:biz_id" do
-  @biz_id = params[:biz_id]
-  @response = settings.client.business(@biz_id)
-  @yelp_biz = @response.business
-
-  erb :reviews
+get "/view/:biz_id/obj.json" do
+  content_type :json
+  biz_id = params[:biz_id]
+  returned_business = settings.client.business(biz_id).business
+  business_name = returned_business.name
+  business_phone = returned_business.display_phone
+  business_address = returned_business.location.display_address.join(", ")
+  business_reviews_count = returned_business.review_count
+  {"business_name": business_name, "business_phone": business_phone, "business_address": business_address, "business_reviews_count": business_reviews_count}.to_json
 end
